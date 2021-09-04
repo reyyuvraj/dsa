@@ -1,4 +1,3 @@
-import java.util.*;
 class Stack_TwoInAnArray {
 
     int size;
