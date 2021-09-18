@@ -1,12 +1,15 @@
-package tree;
+package self.tree;
 
-public class PostorderTraversal {
+public class NodesAtK {
 
-    static void postorder(Node root){
-        if(root!=null){
-            postorder(root.left);
-            postorder(root.right);
+    static void nodeAtK(Node root, int k){
+        if(root==null)
+            return;
+        if (k==0)
             System.out.print(root.key+" ");
+        else{
+            nodeAtK(root.left,k-1);
+            nodeAtK(root.right,k-1);
         }
     }
 
@@ -16,6 +19,6 @@ public class PostorderTraversal {
         root.right = new Node(30);
         root.right.left = new Node(40);
         root.right.right = new Node(50);
-        postorder(root);
+        nodeAtK(root,2);
     }
 }

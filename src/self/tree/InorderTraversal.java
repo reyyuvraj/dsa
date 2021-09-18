@@ -1,4 +1,4 @@
-package tree;
+package self.tree;
 
 class Node{
     int key;
