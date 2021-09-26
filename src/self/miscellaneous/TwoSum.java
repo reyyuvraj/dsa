@@ -1,15 +1,22 @@
 package self.miscellaneous;
 
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class TwoSum {
 
-    static void hash(int[] arr, int k) {
-        int a = 0, b = 0;
+    static Integer[] hash(int[] arr, int k) {
         HashMap<Integer, Integer> hm = new HashMap<>();
         for (int i = 0; i < arr.length; i++) {
-            hm.put(arr[i], k - arr[i]);
+
+            Integer d = k - arr[i];
+            if (hm.containsKey(d)) {
+                return new Integer[]{hm.get(d), i};
+            }
+
+            hm.put(arr[i], i);
         }
+        return null;
     }
 
     static void array(int[] arr, int k) {
@@ -29,5 +36,6 @@ public class TwoSum {
         int[] arr = {1, 2, 3, 4, 5, 6, 7, 8};
         int key = 4;
         array(arr, key);
+        System.out.println(Arrays.toString(hash(arr, key)));
     }
 }
