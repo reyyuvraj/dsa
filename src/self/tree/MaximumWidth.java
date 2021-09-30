@@ -32,6 +32,7 @@ public class MaximumWidth {
         root.right = new Node(30);
         root.right.left = new Node(40);
         root.right.right = new Node(50);
+        root.left.left = new Node(60);
         System.out.println(width(root));
     }
 }
