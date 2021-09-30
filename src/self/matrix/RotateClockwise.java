@@ -1,5 +1,6 @@
 package self.matrix;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class RotateClockwise {
@@ -42,6 +43,17 @@ public class RotateClockwise {
         }
     }
 
+    static int[][] printMatrix(int[][] matrix) {
+        int n = matrix.length;
+        int[][] mat = new int[n][n];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                mat[i][j] = matrix[i][j];
+            }
+        }
+        return mat;
+    }
+
     public static void main(String[] args) {
         Scanner xx = new Scanner(System.in);
         int n = xx.nextInt();
@@ -52,5 +64,7 @@ public class RotateClockwise {
             }
         }
         rotate(matrix);
+        System.out.println();
+        System.out.println(Arrays.deepToString(printMatrix(matrix)));
     }
 }
