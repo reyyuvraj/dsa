@@ -3,39 +3,38 @@ package self.linkedlist;
 import java.util.Arrays;
 import java.util.LinkedList;
 
+//https://leetcode.com/problems/split-linked-list-in-parts/submissions/
 public class SplitLinkedList {
 
-    private static class Node {
-        Node next;
+    private static class ListNode {
+        ListNode next;
         int value;
-        Node(int k, Node next){
+        ListNode(int k){
             value = k;
-            this.next = next;
+            this.next = null;
         }
     }
 
-    public static Node[] splitListToParts(Node root, int k) {
-        Node[] res = new Node[k];
-        if (k == 1) {
-            res[0] = root;
-            return res;
-        }
+    public static ListNode[] splitListToParts(ListNode root, int k) {
+        ListNode curr = root;
+        ListNode[] res = new ListNode[k];
         int n = getLength(root);
-        Node pre = null;
-        for (int i = 0; i < k; i++) {
-            res[i] = root;
-            int j = n / k + (i < n % k ? 1 : 0);
-            while (root != null && j > 0) {
-                pre = root;
-                root = root.next;
-                j--;
+        int width = n/k, rem = n%k;
+
+        for (int i=0;i<k;++i){
+            ListNode head = new ListNode(0) , write = head;
+
+            for (int j=0;j<width+(i<rem?1:0);++j){
+                write = write.next = new ListNode(curr.value);
+                if (curr!=null)
+                    curr =curr.next;
             }
-            if (pre != null) pre.next = null;
+            res[i] = head.next;
         }
         return res;
     }
 
-    private static int getLength(Node root) {
+    private static int getLength(ListNode root) {
         int len = 0;
         while (root != null) {
             len++;
@@ -50,13 +49,13 @@ public class SplitLinkedList {
 
         LinkedList<Integer> ll = new LinkedList<>();
 
-        Node head = null;
+        ListNode head = null;
 
         for (int i= arr.length-1;i>=0;i--)
-            head = new Node(arr[i], head);
+            head = new ListNode(arr[i]);
         System.out.println(head);
 
-        Node[] nodes = splitListToParts(head, 3);
+        ListNode[] listNodes = splitListToParts(head, 3);
         System.out.println(Arrays.toString(splitListToParts(head, 3)));
     }
 }
