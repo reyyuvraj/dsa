@@ -39,7 +39,7 @@ public class GraphBFS {
             int u = q.poll();
             a.add(u);
             for (int i : gr.get(u)) {
-                if (visited[i] == false) {
+                if (!visited[i]) {
                     visited[i] = true;
                     q.add(i);
                 }

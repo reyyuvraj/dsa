@@ -13,12 +13,16 @@ public class GraphBFSDisconnected {
         for (int i = 0; i < v; i++)
             gr.add(new ArrayList<>());
 
+        DFS dfs = new DFS();
+
         addEdge(gr, 0, 1);
         addEdge(gr, 1, 0);
         addEdge(gr, 1, 2);
         addEdge(gr, 1, 3);
         addEdge(gr, 2, 3);
         addEdge(gr, 4, 0);
+        dfs.dfs(gr, 5, 0);
+        System.out.println();
         bfsDisconnected(gr, 5);
     }
 
