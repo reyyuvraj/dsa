@@ -5,8 +5,8 @@ public class BalancedTree {
     static boolean balanced(Node root){
         if (root==null)
             return true;
-        int d = height(root.left)-height(root.right);
-        if (Math.abs(d)==0 || Math.abs(d)==-1 || Math.abs(d)==1)
+        int d = Math.abs(height(root.left)-height(root.right));
+        if (d<=1)
             return balanced(root.left) && balanced(root.right);
         return false;
     }
