@@ -91,6 +91,5 @@ public class SpiralTraversal {
         root.right.right = new Node(50);
         System.out.println(spiralTraversal(root));
         System.out.println(spiralTraversalList(root));
-        System.out.println(new ArrayList<>());
     }
 }
