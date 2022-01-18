@@ -15,12 +15,12 @@ public class XeniaRingRoad {
         System.out.println(xenia(n, m, arr));
     }
 
-    static int xenia(int n, int m, int[] arr) {
-        int res = 0;
+    static long xenia(int n, int m, int[] arr) {
+        long res = arr[0] - 1;
         for (int i = 1; i < m; i++) {
-            if (arr[i] < arr[i - 1]) res += n + arr[i];
-            else if (arr[i] > arr[i - 1]) res += arr[i] - arr[i - 1];
-            //System.out.println(i + " " + res);
+            int diff = arr[i] - arr[i - 1];
+            if (diff < 0) res += n - arr[i - 1] + arr[i];
+            else if (diff > 0) res += diff;
         }
         return res;
     }
