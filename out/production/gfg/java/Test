@@ -1,0 +1,39 @@
+package java;
+
+abstract class A {
+    private int x;
+    A(int x){
+        System.out.println("Value of x: " +x);//Value of x: 10
+    }
+    abstract void m1(int x, double y);
+}
+class B extends A {
+    private int y;
+    B(int y){
+        super(10);
+        System.out.println("Value of y: " +y);//Value of 30
+    }
+    void m1(int x, double y){
+        System.out.println("One");//One One
+    }
+    void m2(){
+        System.out.println("Two");//two
+        this.m1(5, 10.50);//this refers to the current
+    }
+}
+class C extends B {
+    C(){
+        super(30);
+    }
+    void m1(int x, double y){// 10, 20.50
+        super.m1(10, 15.15);//done
+        System.out.println("Three");// Three
+    }
+}
+public class Test {
+    public static void main(String[] args){
+        B b = new C();//executed
+        b.m1(10, 20.50);
+        b.m2();
+    }
+}
