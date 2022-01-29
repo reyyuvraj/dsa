@@ -11,36 +11,27 @@ public class LittlePony {
         for (int i = 0; i < n; i++)
             arr[i] = in.nextInt();
 
-        int count = 0;
+        int id = 0, count = 0;
 
-        for (int i = 0; i < n; i++) {
-            if (arraySortedOrNot(arr, arr.length))
-                break;
-            if (arr[arr.length-1]<arr[0])
-                changeArray(arr, arr.length);
-            else
-                break;
+        for (int i = 0; i < n - 1; i++) {
+            if (arr[i] > arr[i + 1]) {
+                id = i;
+                count++;
+            }
+        }
+
+        if (arr[n - 1] > arr[0]) {
+            id = n - 1;
             count++;
         }
 
-        if (arraySortedOrNot(arr, arr.length))
+        if (count == 0)
             System.out.println(count);
-        else
+        else if (count > 1)
             System.out.println("-1");
+        else
+            System.out.println(n - 1 - id);
     }
 
-    static boolean arraySortedOrNot(int[] a, int n) {
-        if (n == 1 || n == 0)
-            return true;
 
-        return a[n - 1] >= a[n - 2]
-                && arraySortedOrNot(a, n - 1);
-    }
-
-    static void changeArray(int[] a, int n) {
-        int temp = a[a.length - 1];
-        for (int i = n - 1; i > 0; i--)
-            a[i] = a[i - 1];
-        a[0] = temp;
-    }
 }
