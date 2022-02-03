@@ -14,22 +14,25 @@ public class Books {
             a[i] = in.nextInt();
         }
 
-        int i = 0, j = 0, sum = 0;
-        int max_time = 0;
-        int max_book = 0;
-        while (i < n && j < n) {
-            sum+=a[j];
-            if (t>=sum){
-                max_time = Math.max(max_time, sum);
-                max_book = Math.max(max_book, j-i+1);
-                j++;
-            } else {
-                sum = 0;
-                i++;
-                j=i;
-            }
-        }
+        int max_book = max(a, n, t);
+
         System.out.println(max_book);
 
+    }
+
+    private static int max(int[] a, int n, int t){
+        int r = 0;
+        int time = 0;
+        int max_books = 0;
+        for (int i = 0; i < n; ++i) {
+            while (r < n && time + a[r] <= t) {
+                time += a[r];
+                ++r;
+            }
+            max_books = Math.max(max_books, r - i);
+            time -= a[i];
+        }
+
+        return max_books;
     }
 }
