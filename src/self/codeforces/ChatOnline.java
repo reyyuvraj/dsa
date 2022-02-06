@@ -28,11 +28,12 @@ public class ChatOnline {
         int m = 0;
 
         for (int i = 0; i < p; i++) {
-            for (int j = 0; j <q; j++) {
+            for (int j = 0; j < q; j++) {
                 int t = l;
                 while (t <= r) {
-                    if (check(a[i][0], a[i][1], c[j][0], c[j][1], t))
-                        m++;
+                    if (check(a[i][0], a[i][1], c[j][0], c[j][1], t)) {
+                        m += count(a[i][0], a[i][1], c[j][0], c[j][1], t);
+                    }
                     t++;
                 }
             }
@@ -42,5 +43,18 @@ public class ChatOnline {
 
     private static boolean check(int a, int b, int c, int d, int t) {
         return a == c + t || a == d + t || b == c + t || b == d + t;
+    }
+
+    private static int count(int a, int b, int c, int d, int t) {
+        int count = 0;
+        if (a == c + t)
+            count++;
+        if (a == d + t)
+            count++;
+        if (b == c + t)
+            count++;
+        if (b == d + t)
+            count++;
+        return count;
     }
 }
