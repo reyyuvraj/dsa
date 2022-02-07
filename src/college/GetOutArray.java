@@ -46,12 +46,13 @@ public class GetOutArray {
     private static int getNumber(String str) {
         int length = str.length(), num = 0;
         boolean negative = false;
+        if (str.charAt(0) == '-') {
+            negative = true;
+            length--;
+            str = str.substring(1);
+        }
 
-        for (int i = 0; i < length; i++) {
-            if (str.charAt(i) == '-') {
-                negative = true;
-                continue;
-            }
+        for (int i = 0; i < str.length(); i++) {
             num += (str.charAt(i) - '0') * length - i - 1;
         }
 
