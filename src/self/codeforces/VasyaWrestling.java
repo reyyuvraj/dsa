@@ -9,53 +9,59 @@ public class VasyaWrestling {
 
         int[] arr = new int[n];
 
-        Queue<Integer> first = new LinkedList<>();
-        Queue<Integer> second = new LinkedList<>();
+        ArrayList<Integer> first = new ArrayList<>();
+        ArrayList<Integer> second = new ArrayList<>();
 
-        int sum = 0, size_first=0, size_second=0;
-        short last = 0;
+        int sum = 0;
 
         for (int i = 0; i < n; i++) {
             arr[i] = in.nextInt();
             if (arr[i] > 0) {
                 first.add(arr[i]);
-                last = 1;
-                size_first++;
             } else {
                 second.add(arr[i] * -1);
-                last = 2;
-                size_second++;
             }
             sum += arr[i];
         }
 
         if (sum != 0) {
-            if (sum > 0)
-                System.out.println("first");
-            else
-                System.out.println("second");
-        } else {
-            int p = 0, q = 0;
+            System.out.println((sum > 0) ? "first" : "second");
+            return;
+        }
 
-            while (p < first.size() && q < second.size()) {
-                if (Objects.equals(first.peek(), second.peek())) {
-                    p++;
-                    q++;
-                } else {
-                    if (first.peek() > second.peek())
-                        System.out.println("first");
-                    else
-                        System.out.println("second");
-                    break;
+        if (first.size() > second.size()) {
+            for (int i = 0; i < second.size(); i++) {
+                if (first.get(i) > second.get(i)) {
+                    System.out.println("first");
+                    return;
+                } else if (second.get(i) > first.get(i)) {
+                    System.out.println("second");
+                    return;
                 }
-                first.remove();
-                second.remove();
             }
-
-            if (first.isEmpty() && second.isEmpty()) {
-                String str = (last == 1) ? "first" : "second";
-                System.out.println(str);
+            System.out.println("first");
+        } else if (second.size() > first.size()) {
+            for (int i = 0; i < first.size(); i++) {
+                if (first.get(i) > second.get(i)) {
+                    System.out.println("first");
+                    return;
+                } else if (second.get(i) > first.get(i)) {
+                    System.out.println("second");
+                    return;
+                }
             }
+            System.out.println("second");
+        } else {
+            for (int i = 0; i < first.size(); i++) {
+                if (first.get(i) > second.get(i)) {
+                    System.out.println("first");
+                    return;
+                } else if (second.get(i) > first.get(i)) {
+                    System.out.println("second");
+                    return;
+                }
+            }
+            System.out.println((arr[arr.length - 1] > 0) ? "first" : "second");
         }
     }
 }
