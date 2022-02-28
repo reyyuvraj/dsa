@@ -5,32 +5,23 @@ import java.util.List;
 
 public class PascalTriangle {
 
-    public static void printPascal(List<List<Integer>> a){
-        List<Integer> al = a.get(a.size()-1);
-        List<Integer> res = new ArrayList<>();
+    public static List<List<Integer>> printPascal(int numRows){
+        List<List<Integer>> result = new ArrayList<>();
 
-        res.add(1);
-
-        for (int i=1;i<al.size()-1;i++){
-            res.add(al.get(i)+al.get(i+1));
+        for (int i = 1;i<=numRows;i++){
+            List<Integer> res = new ArrayList<>();
+            for (int j=0;j<i;j++){
+                if (j==0 || j==i-1)
+                    res.add(1);
+                else
+                    res.add(result.get(i-2).get(j-1)+result.get(i-2).get(j));
+            }
+            result.add(res);
         }
-
-        res.add(1);
-
-        a.add(res);
+        return result;
     }
 
     public static void main(String[] args){
-        List<List<Integer>> a = new ArrayList<>();
-        List<Integer> a1 = new ArrayList<>();
-        a1.add(1);
-        a.add(a1);
-        a1.add(1);
-        a.add(a1);
-        for (int i=1;i<=5;i++){
-            printPascal(a);
-        }
-
-        System.out.println(a);
+        System.out.println(printPascal(5));
     }
 }
