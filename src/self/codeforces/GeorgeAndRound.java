@@ -3,6 +3,7 @@ package self.codeforces;
 import java.util.*;
 
 public class GeorgeAndRound {
+
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         int n = in.nextInt();
@@ -15,8 +16,9 @@ public class GeorgeAndRound {
         for (i = 0; i < a.length; i++)
             a[i] = in.nextInt();
 
-        for (i = 0; i < m; i++)
+        for (i = 0; i < m; i++) {
             b[i] = in.nextInt();
+        }
 
         for (i = 0; i < n; i++) {
             while (j < m) {
@@ -27,6 +29,6 @@ public class GeorgeAndRound {
                 j++;
             }
         }
-        System.out.println(Math.max(0, n - res));
+        System.out.println(Math.max(res, n - res));
     }
 }
