@@ -26,6 +26,32 @@ public class FiveLetterWords {
         return true;
     }
 
+    private static boolean atPosition(String word, HashMap<Integer, String> atPos) {
+        for (int i = 1; i <= 5; i++) {
+            String pos = atPos.get(i);
+            if (!Objects.equals(pos, "")) {
+                if (!Character.toString(word.charAt(i - 1)).equals(pos))
+                    return false;
+            }
+        }
+        return true;
+    }
+
+    private static boolean notAtPosition(String word, HashMap<Integer, ArrayList<String>> notAtPos) {
+        for (int i = 1; i <= 5; i++) {
+            int len = 0;
+            if (notAtPos.get(i)!=null)
+                len = notAtPos.get(i).size();
+            if (len > 0) {
+                for (String str : notAtPos.get(i)) {
+                    if (Objects.equals(str, Character.toString(word.charAt(i-1))))
+                        return false;
+                }
+            }
+        }
+        return true;
+    }
+
     public static void main(String[] args) throws IOException {
         File file = new File("C:\\Users\\reyyu\\Documents\\FiveLetterWords.txt");// Note: Double back-quote is to avoid compiler interpret words like \test as \t (that is. as an escape sequence)
 
@@ -62,12 +88,44 @@ public class FiveLetterWords {
 
         wrd.removeIf(wr -> !doesContain(wr, contains));
 
+        //TODO -> create a function to eliminate words not present at a certain position.
+
+        //wrd.removeIf(wr -> !wr.startsWith("t") && wr.charAt(1)!='a');
+
         System.out.println(wrd + "\n" + wrd.size());
 
-        //TODO -> create a function to eliminate words not present at a certain position.
-        //TODO -> create a function if it does not have a word present at a certain position.
-
         HashMap<Integer, String> atPos = new HashMap<>();
+
         HashMap<Integer, ArrayList<String>> notAtPos = new HashMap<>();
+
+        for (int i = 1; i <= 5; i++) {
+            System.out.println("If you know the letter at position " + i + " enter it, otherwise write (no) :\n");
+            String str = in.next();
+            if (!Objects.equals(str, "no"))
+                atPos.put(i, str);
+            else
+                atPos.put(i, "");
+        }
+
+        wrd.removeIf(wr -> !atPosition(wr, atPos));
+
+        for (int i=1;i<=5;i++){
+            System.out.println("If you know letter(s) are not present at "+i+" enter there number and then letters, otherwise type -1 :");
+            int len = in.nextInt();
+
+            ArrayList<String> a = new ArrayList<>();
+            if (len!=-1){
+                System.out.println("Enter the letters :");
+                for (int j=0;j<len;j++){
+                    String s = in.next();
+                    a.add(s);
+                }
+            }
+            notAtPos.put(i, a);
+        }
+
+        wrd.removeIf(wr -> !notAtPosition(wr, notAtPos));
+
+        System.out.println(wrd + "\n" + wrd.size());
     }
 }
