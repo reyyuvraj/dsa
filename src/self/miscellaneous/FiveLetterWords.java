@@ -5,7 +5,7 @@ import java.util.*;
 
 public class FiveLetterWords {
 
-    public static void getWords(String s, ArrayList<String> wrd) {
+    private static void getWords(String s, ArrayList<String> wrd) {
         s = s.trim();
         wrd.add(s);
     }
@@ -88,10 +88,6 @@ public class FiveLetterWords {
 
         wrd.removeIf(wr -> !doesContain(wr, contains));
 
-        //TODO -> create a function to eliminate words not present at a certain position.
-
-        //wrd.removeIf(wr -> !wr.startsWith("t") && wr.charAt(1)!='a');
-
         System.out.println(wrd + "\n" + wrd.size());
 
         HashMap<Integer, String> atPos = new HashMap<>();
@@ -99,7 +95,7 @@ public class FiveLetterWords {
         HashMap<Integer, ArrayList<String>> notAtPos = new HashMap<>();
 
         for (int i = 1; i <= 5; i++) {
-            System.out.println("If you know the letter at position " + i + " enter it, otherwise write (no) :\n");
+            System.out.println("If you know the letter at position " + i + " enter it, otherwise write \"no\") :\n");
             String str = in.next();
             if (!Objects.equals(str, "no"))
                 atPos.put(i, str);
@@ -110,11 +106,11 @@ public class FiveLetterWords {
         wrd.removeIf(wr -> !atPosition(wr, atPos));
 
         for (int i=1;i<=5;i++){
-            System.out.println("If you know letter(s) are not present at "+i+" enter there number and then letters, otherwise type -1 :");
+            System.out.println("If you know letter(s) are not present at "+i+" :\nenter there count and then letters,\notherwise type 0 :");
             int len = in.nextInt();
 
             ArrayList<String> a = new ArrayList<>();
-            if (len!=-1){
+            if (len!=0){
                 System.out.println("Enter the letters :");
                 for (int j=0;j<len;j++){
                     String s = in.next();
