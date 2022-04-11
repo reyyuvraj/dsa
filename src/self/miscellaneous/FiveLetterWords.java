@@ -124,4 +124,5 @@ public class FiveLetterWords {
 
         System.out.println(wrd + "\n" + wrd.size());
     }
+
 }
