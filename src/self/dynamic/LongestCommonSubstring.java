@@ -8,21 +8,28 @@ public class LongestCommonSubstring {
 
         int[][] dp = new int[m + 1][n + 1];
 
+        int idx = 0;
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
                 if (str1.charAt(i) == str2.charAt(j)) {
                     dp[i + 1][j + 1] = 1 + dp[i][j];
-                    max = Math.max(dp[i + 1][j + 1], max);
+                    if (dp[i+1][j+1]>max){
+                        max = dp[i+1][j+1];
+                        idx = i;
+                    }
                 } else
                     dp[i + 1][j + 1] = 0;
             }
         }
 
+        //for printing string needs correction -> String sub = str1.substring(idx-max+1, idx);
+        //System.out.println(sub);
+
         return max;
     }
 
     public static void main(String[] args) {
-        String str1 = "abcjklp", str2 = "acjkp";
+        String str1 = "aacabdkacaa", str2 = new StringBuffer(str1).reverse().toString();//"acjkp"
         System.out.println(lcs(str1, str2));
     }
 }
