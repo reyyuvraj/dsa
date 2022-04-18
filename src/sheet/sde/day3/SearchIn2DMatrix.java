@@ -8,40 +8,49 @@ public class SearchIn2DMatrix {
         System.out.println(searchMatrix(matrix, target));
     }
 
-    public static boolean searchMatrix(int[][] matrix, int target) {
+    public boolean binary(int[][] matrix, int target) {
+        if (matrix.length == 0 || matrix[0].length == 0) {
+            return false;
+        }
 
-        int m = matrix.length, n = matrix[0].length,i = 0, j = m;
+        int low;
+        int high;
 
-        while (j >= 0 && i <= n) {
-            if (target == matrix[i][j])
-                return true;
-            else if (target > matrix[i][j]) {
-                j++;
+        // first search in first column, use binary search
+        for (low = 0, high = matrix.length - 1; low <= high; ) {
+            int middle = (low + high) / 2;
+            if (matrix[middle][0] < target) {
+                low = middle + 1;
+            } else if (matrix[middle][0] > target) {
+                high = middle - 1;
             } else {
-                i++;
+                return true;
             }
         }
 
+        // when above loop ends, search in row[high]
+        int row = high;
+        if (row >= 0) {
+            for (low = 0, high = matrix[row].length - 1; low <= high; ) {
+                int middle = (low + high) / 2;
+                if (matrix[row][middle] < target) {
+                    low = middle + 1;
+                } else if (matrix[row][middle] > target) {
+                    high = middle - 1;
+                } else {
+                    return true;
+                }
+            }
+        }
         return false;
     }
 
-    public static boolean searchMatrixO(int[][] matrix, int target) {
-
-        int m=matrix.length-1;
-        int n=matrix[0].length-1;
-
-        int i=0;
-        int j=matrix.length-1;
-        while(i<=matrix[0].length-1 && j>=0){
-            if(matrix[j][i]==target){
-                return true;
-            }
-            else if(target>matrix[j][i]){
-                i++;
-            }
-            else{
-                j--;
-            }
+    public static boolean searchMatrix(int[][] matrix, int target) {//linearly searching
+        int i = 0, j = matrix[0].length - 1;
+        while (i < matrix.length && j >= 0) {
+            if (matrix[i][j] == target) return true;
+            else if (matrix[i][j] > target) j--;
+            else i++;
         }
         return false;
     }
