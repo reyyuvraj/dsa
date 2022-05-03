@@ -1,4 +1,4 @@
-package sheet.sde.day1;
+package sheet.sde.array;
 
 public class MaximumSubArray {
 

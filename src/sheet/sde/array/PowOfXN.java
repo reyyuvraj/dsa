@@ -1,4 +1,4 @@
-package sheet.sde.day3;
+package sheet.sde.array;
 
 public class PowOfXN {
 
