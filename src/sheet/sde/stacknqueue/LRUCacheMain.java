@@ -73,7 +73,7 @@ class LRUCacheStack {//uses stack
 class LRUCache {
 
     Node head = new Node(0, 0), tail = new Node(0, 0);
-    HashMap<Integer, Node> hm = new HashMap();
+    HashMap<Integer, Node> hm = new HashMap<>();
     int capacity;
 
     public LRUCache(int capacity) {
