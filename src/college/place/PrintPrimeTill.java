@@ -1,4 +1,4 @@
-package college.cogni;
+package college.place;
 
 public class PrintPrimeTill {
 

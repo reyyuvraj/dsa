@@ -9,7 +9,7 @@ public class ThreeSumMultiplicity {
         Map<Integer, Integer> map = new HashMap<>();
 
         int res = 0;
-        int mod = 1000000007;
+        int mod = (int)10e9;
         for (int i = 0; i < A.length; i++) {
             res = (res + map.getOrDefault(target - A[i], 0)) % mod;
 
