@@ -4,36 +4,34 @@ import java.util.Stack;
 
 public class Sample {
 
-    public static void main(String[] args) {
-        int[] arr = {15, 7, 5, 6, 10, 4, 1, 5};
+    int findRepeatFirstN2(String s)
+    {
+        int pos = -1, len = s.length(), i, j;
 
-        Stack<Integer> stack = new Stack<>();
-        for (int i = 0; i < arr.length; i++) {
-            stack.push(arr[i]);
+        for (i = 0; i < len; i++)
+        {
+            for (j = i + 1; j < len; j++)
+            {
+                if (s.charAt(i) == s.charAt(j))
+                {
+                    pos = i;
+                    break;
+                }
+            }
+            if (pos != -1)
+                break;
         }
 
-        System.out.println(findStack(stack));
+        return s.charAt(pos);
     }
 
-    public static Stack findStack(Stack inIntStack) {
-        Stack outIntStack = new Stack();
-
-        if (inIntStack.isEmpty()) {
-            return null;
+    private int countSetBits(int n)
+    {
+        int count = 0;
+        while (n > 0) {
+            count += n & 1;
+            n >>= 1;
         }
-
-        int number = 1;
-
-        while (!inIntStack.isEmpty()) {
-            outIntStack.push((int) inIntStack.pop() + number);
-            number += 1;
-            int temp = (int) inIntStack.pop();
-            if (((int) outIntStack.peek()) % temp == 0) {
-                outIntStack.push(inIntStack.pop());
-            } else {
-                outIntStack.push(temp / number);
-            }
-        }
-        return outIntStack;
+        return count;
     }
 }
