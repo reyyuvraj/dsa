@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class WinnerOfArrayGame {
 
-    public int getWinner(int[] arr, int k) {
+    public int getWinner(int[] arr, int k) {//wrong
         StringBuilder sbr = new StringBuilder("sadsa");
         sbr.charAt(0);
         String s = "asdada";
