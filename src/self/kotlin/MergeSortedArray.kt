@@ -1,4 +1,4 @@
-package self.forkotlin
+package self.kotlin
 
 class MergeSortedArray {
     private fun merge(array1: IntArray, m: Int, array2: IntArray, n: Int): Unit {
